@@ -27,7 +27,7 @@ const mkdirs = function(dirpath, callback) {
 mkdirs(version);
 mkdirs(`${version}/css`);
 
-// html
+// index.html
 http.get('http://bee.tinper.org/', function(res) {
     let html = '';
     // 获取页面数据
@@ -37,7 +37,6 @@ http.get('http://bee.tinper.org/', function(res) {
     // 数据获取结束
     res.on('end', ()=>{
         html = html.replace(/href="\/css/g,`href="/tinper-bee-history/${version}/css`);
-        console.log(html)
         fs.writeFile(`./${version}/index.html`, html, (err)=>{callback(err,'写入html')})
     });
 }).on('error', function() {
@@ -69,3 +68,5 @@ const wirteCss = (firename)=>{
 wirteCss('atom-one-dark.css');
 wirteCss('layout.css');
 wirteCss('md.css');
+
+
