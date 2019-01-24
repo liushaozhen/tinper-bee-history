@@ -36,6 +36,8 @@ http.get('http://bee.tinper.org/', function(res) {
     });
     // 数据获取结束
     res.on('end', ()=>{
+        html = html.replace(/href="\/css/g,`href="/tinper-bee-history/${version}/css`);
+        console.log(html)
         fs.writeFile(`./${version}/index.html`, html, (err)=>{callback(err,'写入html')})
     });
 }).on('error', function() {
